@@ -57,9 +57,7 @@ function CategoriesPage() {
     ]
 
     useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000)
+        setLoading(false)
     })
 
     const onClickCategory = (id) => {
@@ -67,7 +65,7 @@ function CategoriesPage() {
     };
 
     return (
-        <div className="bg-gradient-to-r from-red-400 to-red-600 h-screen flex flex-col justify-between">
+        <div className="flex flex-col justify-between">
             {loading ?
                 (
                     <div className="flex flex-col items-center justify-center pt-10 ">
@@ -92,7 +90,7 @@ function CategoriesPage() {
                                         src={category.img}
                                     >
                                     </img>
-                                    <p className=" text-center text-black font-semibold truncate pt-3">{category.name}</p>
+                                    <p className=" text-center text-white font-semibold truncate pt-3">{category.name}</p>
                                 </div>
                             ))}
                         </div>

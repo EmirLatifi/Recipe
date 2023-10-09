@@ -35,7 +35,7 @@ function ShowRecipeModal({ open, close }) {
             setRandomRecipe(data);
             setTimeout(() => {
                 setLoading(false)
-            }, 2000)
+            }, 1500)
 
         } catch (error) {
             console.error(error);
@@ -69,7 +69,7 @@ function ShowRecipeModal({ open, close }) {
                                 </div>
                             </div>
                         ))}
-                        <div className="close text-3xl text-black cursor-pointer " onClick={close}><FontAwesomeIcon icon={faCircleXmark} /></div>
+                        <div className="close text-3xl text-black cursor-pointer hover:text-red-900 " onClick={close}><FontAwesomeIcon icon={faCircleXmark} /></div>
                     </div>
                 )}
         </div>

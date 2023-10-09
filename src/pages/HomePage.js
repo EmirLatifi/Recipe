@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import RecipeImg from "../Img/Recipe.png";
+import React, { useState } from 'react';
+import RecipeImg from "../img/Recipe.png";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import ShowRecipeModal from '../components/ShowRecipeModal';
 
@@ -17,7 +17,7 @@ function HomePage() {
     }
 
     return (
-        <div className="bg-gradient-to-r from-red-400 to-red-600 flex flex-col justify-between">
+        <div className="flex flex-col justify-between">
             <div className="md:h-[415px] w-10/12 lg:w-9/12 xl:w-8/12 mx-auto flex flex-col items-center md:flex-row gap-5 pt-10">
                 <div className="">
                     <h3 className="pb-5 text-center text-3xl lg:text-4xl font-marck">

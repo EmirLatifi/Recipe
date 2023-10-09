@@ -11,6 +11,7 @@ function SearchedMealsPage() {
     const { search, favoriteRecipe, setFavoriteRecipe, onClickGetId } = recipeContext;
 
     const [searchRecipes, setSearchRecipes] = useState([]);
+    const [noResults, setNoResults] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const onClickFavorite = (idMeal) => {
@@ -32,10 +33,15 @@ function SearchedMealsPage() {
         try {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
             const data = response.data.meals;
-            setSearchRecipes(data);
+            if (data) {
+                setSearchRecipes(data);
+            } else {
+                setSearchRecipes([]);
+                setNoResults(true);
+            }
             setTimeout(() => {
                 setLoading(false)
-            }, 1000)
+            }, 800)
 
         } catch (error) {
             console.error(error);
@@ -60,20 +66,28 @@ function SearchedMealsPage() {
                 (
                     <>
                         {search && (
-                            <div className="bg-gradient-to-r from-red-400 to-red-600">
-                                <div className="w-10/12 grid grid-cols-2 sm:grid-cols-3 mx-auto pt-10 gap-x-10 gap-y-4 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
-                                    {searchRecipes.map(recipe => (
-                                        <div
-                                            key={recipe.idMeal}
-                                            className="relative rounded-lg m-3">
-                                            <img onClick={() => onClickGetId(recipe.idMeal)} className=" rounded-[50%] hover:scale-105 hover:cursor-pointer shadow-lg shadow-black" src={recipe.strMealThumb} alt="Food Image"></img>
-                                            <div className="flex items-center justify-center gap-2 pt-2">
-                                                <p className=" text-center text-white font-courgette text-xl lg:text-2xl truncate">{recipe.strMeal}</p>
-                                                <button onClick={() => onClickFavorite(recipe.idMeal)} className="text-2xl lg:text-3xl text-red-800 hover:text-red-200 hover:cursor-pointer"><FontAwesomeIcon icon={faHeart} /></button>
-                                            </div>
+                            <div>
+                                {noResults ? (
+                                    <p className=" text-3xl text-center font-crimson py-10">
+                                        There are no recipes with those letters.
+                                    </p>
+                                ) :
+                                    (
+                                        <div className="w-10/12 grid grid-cols-2 sm:grid-cols-3 mx-auto pt-10 gap-x-10 gap-y-4 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
+                                            {searchRecipes.map(recipe => (
+                                                <div
+                                                    key={recipe.idMeal}
+                                                    className="relative rounded-lg m-3">
+                                                    <img onClick={() => onClickGetId(recipe.idMeal)} className=" rounded-[50%] hover:scale-105 hover:cursor-pointer shadow-lg shadow-black" src={recipe.strMealThumb} alt="Food Image"></img>
+                                                    <div className="flex items-center justify-center gap-2 pt-2">
+                                                        <p className=" text-center text-white font-courgette text-xl lg:text-2xl truncate">{recipe.strMeal}</p>
+                                                        <button onClick={() => onClickFavorite(recipe.idMeal)} className="text-2xl lg:text-3xl text-red-800 hover:text-red-200 hover:cursor-pointer"><FontAwesomeIcon icon={faHeart} /></button>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
+                                    )
+                                }
                             </div>
                         )}
                     </>

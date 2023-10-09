@@ -19,26 +19,6 @@ import LetterPage from '../pages/LetterPage';
 import { Routes, Route } from 'react-router-dom';
 
 function MainRoutes() {
-    <Routes>
-        <Route exact path='/HomePage' element={<HomePage />} />
-        <Route path='/CategoriesPage' element={<CategoriesPage />} />
-        <Route path='/BeefPage' element={<BeefPage />} />
-        <Route path='/BreakfastPage' element={<BreakfastPage />} />
-        <Route path='/ChickenPage' element={<ChickenPage />} />
-        <Route path='/LambPage' element={<LambPage />} />
-        <Route path='/PastaPage' element={<PastaPage />} />
-        <Route path='/SeafoodPage' element={<SeafoodsPage />} />
-        <Route path='/SidePage' element={<SidePage />} />
-        <Route path='/VegetarianPage' element={<VegetarianPage />} />
-        <Route path='/DessertPage' element={<DessertPage />} />
-        <Route path='/AboutUsPage' element={<AboutUsPage />} />
-        <Route path='/FavoritePage' element={<FavoritePage />} />
-        <Route path='/ShowInfoPage' element={<ShowInfoPage />} />
-        <Route path='/SearchedMealsPage' element={<SearchedMealsPage />} />
-        <Route path='/CountryPage/:name' element={<CountryPage />} />
-        <Route path='/LetterPage/starts-with/:letter' element={<LetterPage />} />
-    </Routes>
-
     return (
         <Routes>
             <Route exact path='/HomePage' element={<HomePage />} />

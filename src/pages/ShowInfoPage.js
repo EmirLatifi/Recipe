@@ -48,7 +48,7 @@ function ShowInfoPage() {
 
                 setTimeout(() => {
                     setLoading(false)
-                }, 1500)
+                }, 800)
             }
         } catch (error) {
             console.error(error);
@@ -64,7 +64,7 @@ function ShowInfoPage() {
     ));
 
     return (
-        <div className="bg-gradient-to-r from-red-400 to-red-600">
+        <div>
             {loading ?
                 (
                     <div className="flex flex-col items-center pt-10">

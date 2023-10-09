@@ -14,6 +14,7 @@ function LetterPage() {
 
     const [startWithLetter, setStartWithLetter] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [noResults, setNoResults] = useState(false);
     const { letter } = useParams();
 
 
@@ -34,13 +35,19 @@ function LetterPage() {
         try {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`);
             const data = response.data.meals;
-            setStartWithLetter(data);
+            if (data) {
+                setStartWithLetter(data);
+            } else {
+                setStartWithLetter(data);
+                setNoResults(true);
+            }
+
             setTimeout(() => {
                 setLoading(false)
-            }, 1000)
+            }, 800)
 
-        } catch (error) {
-            console.error(error);
+        } catch {
+            alert(`there is no recipe that starts with letter ${letter} `);
         }
     };
 
@@ -61,21 +68,31 @@ function LetterPage() {
                 ) :
                 (
                     <>
-                        <div className="bg-gradient-to-r from-red-400 to-red-600">
-                            <h3 className="text-center text-3xl lg:text-5xl font-marck pt-10">Recipe starts with letter: {letter}</h3>
-                            <div className="w-10/12 grid grid-cols-2 sm:grid-cols-3 mx-auto pt-10 gap-x-10 gap-y-4 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
-                                {startWithLetter.map(recipe => (
-                                    <div
-                                        key={recipe.idMeal}
-                                        className="relative rounded-lg m-3">
-                                        <img onClick={() => onClickGetId(recipe.idMeal)} className=" rounded-[50%] hover:scale-105 hover:cursor-pointer shadow-lg shadow-black" src={recipe.strMealThumb} alt="Food Image"></img>
-                                        <div className="flex items-center justify-center gap-2 pt-2">
-                                            <p className=" text-center text-white font-courgette text-xl lg:text-2xl truncate">{recipe.strMeal}</p>
-                                            <button onClick={() => onClickFavorite(recipe.idMeal)} className="text-2xl lg:text-3xl text-red-800 hover:text-red-200 hover:cursor-pointer"><FontAwesomeIcon icon={faHeart} /></button>
+                        <div>
+                            {noResults ? (
+                                <p className=" text-3xl text-center font-crimson py-10">
+                                    There are no recipes with this letter.
+                                </p>
+                            ) :
+                                (
+                                    <>
+                                        <h3 className="text-center text-3xl lg:text-5xl font-marck pt-10">Recipe starts with letter: {letter}</h3>
+                                        <div className="w-10/12 grid grid-cols-2 sm:grid-cols-3 mx-auto pt-10 gap-x-10 gap-y-4 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
+                                            {startWithLetter.map(recipe => (
+                                                <div
+                                                    key={recipe.idMeal}
+                                                    className="relative rounded-lg m-3">
+                                                    <img onClick={() => onClickGetId(recipe.idMeal)} className=" rounded-[50%] hover:scale-105 hover:cursor-pointer shadow-lg shadow-black" src={recipe.strMealThumb} alt="Food Image"></img>
+                                                    <div className="flex items-center justify-center gap-2 pt-2">
+                                                        <p className=" text-center text-white font-courgette text-xl lg:text-2xl truncate">{recipe.strMeal}</p>
+                                                        <button onClick={() => onClickFavorite(recipe.idMeal)} className="text-2xl lg:text-3xl text-red-800 hover:text-red-200 hover:cursor-pointer"><FontAwesomeIcon icon={faHeart} /></button>
+                                                    </div>
+                                                </div>
+                                            ))}
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
+                                    </>)
+
+                            }
                         </div>
                     </>
                 )

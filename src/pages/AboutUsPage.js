@@ -10,10 +10,10 @@ function AboutUsPage() {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-        }, 1000)
+        }, 100)
     })
     return (
-        <div className="bg-gradient-to-r from-red-400 to-red-600 ">
+        <div className="">
             {loading ?
                 (
                     <div className="flex flex-col items-center pt-10">

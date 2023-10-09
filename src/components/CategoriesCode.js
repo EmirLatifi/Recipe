@@ -32,10 +32,7 @@ function CategoriesCode({ category, desc, name }) {
             const response = await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
             const data = response.data.meals;
             setRecipes(data);
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000)
-
+            setLoading(false)
 
         } catch (error) {
             console.error(error);

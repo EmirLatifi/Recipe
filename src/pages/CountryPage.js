@@ -37,14 +37,14 @@ function CountryPage() {
             setCountryName(data);
             setTimeout(() => {
                 setLoading(false)
-            }, 1000)
+            }, 800)
 
         } catch (error) {
             console.log(error);
         };
     }
     return (
-        <div className="bg-fixed">
+        <div>
             {loading ?
                 (
                     <div className="flex flex-col items-center pt-10">

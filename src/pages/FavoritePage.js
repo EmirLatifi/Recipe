@@ -17,7 +17,7 @@ function FavoritePage() {
 
     setTimeout(() => {
         setLoading(false)
-    }, 1000)
+    }, 800)
 
     const onClickGetId = (item) => {
         setInfo(item)
@@ -47,11 +47,11 @@ function FavoritePage() {
                 (
                     <>
                         <h2 className=" text-5xl xl:text-6xl font-marck text-center pt-10">Favorites</h2>
-                        <div className="w-10/12 grid grid-cols-2 sm:grid-cols-3 mx-auto pt-10 gap-x-10 gap-y-4 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
+                        <div className="w-10/12 grid grid-cols-2 mx-auto pt-10 gap-x-10 gap-y-4 sm:grid-cols-3 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:grid-cols-4">
                             {favoriteRecipe.map(recipe => (
                                 <div
                                     key={recipe.idMeal}
-                                    className="relative rounded-lg m-3">
+                                    className=" rounded-lg m-3">
                                     <img onClick={() => onClickGetId(recipe.idMeal)} className=" rounded-[50%] hover:scale-105 hover:cursor-pointer shadow-lg shadow-black" src={recipe.strMealThumb} alt="Food Image"></img>
                                     <div className="flex items-center justify-center gap-2 pt-2">
                                         <p className=" text-center text-white font-courgette text-xl lg:text-2xl truncate">{recipe.strMeal}</p>
